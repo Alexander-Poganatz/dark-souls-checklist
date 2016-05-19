@@ -10,3 +10,5 @@ because the knights honor achievement is what I started with.
 The ItemAndDescriptionToJavaScript is just a program to convert a list in a text file to a javascript file with json.
 
 The lists folder contains text files of the data for the app.
+
+I didn't contain some files like jquery, bootstrap, and angular.

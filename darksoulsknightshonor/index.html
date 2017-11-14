@@ -1,13 +1,11 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Knight's Honor</title>
-		<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-		<script src="../jquery.js"></script>
-		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<link href="../w3.css" rel="stylesheet" />
 		<script src="../angular.min.js"></script>
 		<script src="data.js"></script>
 		<script src="./darksoulsdatahandler.js"></script>
@@ -15,83 +13,98 @@
 	
 	<body>
 	
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="../">Main</a>
-					
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#hiddenNavBar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span><span class="icon-bar"></span>
-					</button>
-				
-				</div>
-				<!--Rest of navbar-->
-				<div class="collapse navbar-collapse" id="hiddenNavBar">
-					<ul class="nav navbar-nav">
-						<li><a href="../darksoulsbondofapyromancer">Bond of a Pyromancer</a></li>
-						<li class="active"><a href="../darksoulsknightshonor/">Knight's Honor</a></li>
-						<li><a href="../darksoulsprayerofamaiden">Prayer of a Maiden</a></li>
-						<li><a href="../darksoulswisdomofasage">Wisdom of a Sage</a></li>
-					</ul>
-				</div>
-			</div>
-	</nav>
-	
-	<div>&nbsp;</div>
-	<div>&nbsp;</div>
-	
 	<!-- Angular bit: -->
 	
 	<div data-ng-app="darksoulschecklist" data-ng-controller="checklistcontroller" class="container">
 	
-		<!--Put some info here since this is where the bootstrap container is-->
-		<div class="page-header">
-			<h1>Dark Souls Knights Honor Achievement Checklist</h1>
-		</div>
-		<h3>Notes:</h3>
-		<ul>
-			<li>Click the weapon name to display additional info.</li>
-			<li>The giant blacksmith in Anor Londo is required to smith the boss soul weopons.</li>
-			<li>There will be more than one playthrough due to some weopons needing the same boss soul.</li>
-			<li>Information gathered from darksouls.wikia.com.</li>
-			<li>Deleting browser data will remove this apps checklist data.</li>
-		</ul>
+		<nav class="w3-bar w3-black w3-top">
+			
+			<div class="3w-bar w3-black">
+				<a class="w3-bar-item w3-button" href="../">Main</a>
+				
+				<a class="w3-bar-item w3-button w3-hide-small" href="../darksoulsbondofapyromancer">Bond of a Pyromancer</a>
+				<a class="w3-bar-item w3-button w3-hide-small" href="../darksoulsknightshonor/">Knight's Honor</a>
+				<a class="w3-bar-item w3-button w3-hide-small" href="../darksoulsprayerofamaiden">Prayer of a Maiden</a>
+				<a class="w3-bar-item w3-button w3-hide-small" href="../darksoulswisdomofasage">Wisdom of a Sage</a>
+				
+				<!--Button to trigger wide screen bar -->
+				<button class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" 
+					data-ng-click="hideNavList = !hideNavList">&#9776;</button>
+			</div>
+			
+			<!--Rest of navbar-->
+			<div ng-hide="hideNavList" >
+				<div class="w3-bar-block w3-block w3-hide-large w3-hide-medium">
+					<a class="w3-bar-item w3-button" href="../darksoulsbondofapyromancer">Bond of a Pyromancer</a>
+					<a class="w3-bar-item w3-button" href="../darksoulsknightshonor/">Knight's Honor</a>
+					<a class="w3-bar-item w3-button" href="../darksoulsprayerofamaiden">Prayer of a Maiden</a>
+					<a class="w3-bar-item w3-button" href="../darksoulswisdomofasage">Wisdom of a Sage</a>
+				</div>
+			</div>
+		</nav>
 	
-		<div data-ng-repeat="item in items" class="form-horizontal">
-			<div class="form-group well well-sm">
-			
-				<div class="col-xs-8 col-sm-6" data-ng-click="changeInfo(item.description, item.item)" data-toggle="modal" data-target="#infoModal">
-				<label class="control-label input-lg">{{item.item}}</label>
-				</div>
-				<div class="col-xs-4 col-sm-6">
-					<input type="checkbox" class="btn-block input-lg" data-ng-checked="isChecked(item.item)" data-ng-click="changeKey(item.item)"/>
-				</div>
-			</div>
-		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<!--Put some info here since this is where the bootstrap container is-->
+		<div class="w3-container">
 		
+		<h1>Dark Souls Knights Honor Achievement Checklist</h1>
+		
+			<h3>Notes:</h3>
+			<ul>
+				<li>Click the weapon name to display additional info.</li>
+				<li>The giant blacksmith in Anor Londo is required to smith the boss soul weopons.</li>
+				<li>There will be more than one playthrough due to some weopons needing the same boss soul.</li>
+				<li>Information gathered from darksouls.wikia.com.</li>
+				<li>Deleting browser data will remove this apps checklist data.</li>
+			</ul>
+		
+					<table class="w3-table w3-striped w3-border">
+					
+						<tr data-ng-repeat="item in items">
+						
+						<td data-ng-click="displayModal(item.description, item.item)">
+							<label>{{item.item}}</label>
+						</td>
+						
+						<td>
+							<input type="checkbox" class="w3-check" data-ng-checked="isChecked(item.item)" data-ng-click="changeKey(item.item)"/>
+						</td>
+						</tr>
+						
+						
+					
+					</table>
+			
+		
+		</div>
 		<!-- Modal -->
-		<div id="infoModal" class="modal" role="dialog">
+		<div class="w3-modal" ng-style="modalDisplayValue" >
 			
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h3 id="modalHeader"></h3>
+				<div class="w3-modal-content">
+				
+					<div class="w3-container">
+						
+						
+							<button type="button" class="w3-button w3-display-topright w3-red" 
+								data-ng-click="hideModal()">&times;</button>
+							<h3>{{selectedItemName}}</h3>
+						
+							
+						
+							<textarea class="w3-input" rows="8" disabled>{{selectedItemInfo}}</textarea>
+						
+							<div class="w3-panel">
+							
+							</div>
+						
 					</div>
-					
-					<div class="modal-body">
-						<textarea class="form-control" rows="8" id="info" disabled></textarea>
-					</div>
-					<div class="modal-footer">
-					
-					</div>
+				
 				</div>
-			</div>
-			
 		</div>
 		
 	</div>
 
-	
+	</body>
 	
 </html>

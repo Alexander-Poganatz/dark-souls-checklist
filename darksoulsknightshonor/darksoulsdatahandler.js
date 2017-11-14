@@ -5,6 +5,10 @@ var app = angular.module("darksoulschecklist", []);
 app.controller("checklistcontroller", function($scope){
 	
 	//$scope.info = "";
+	$scope.hideNavList = true;
+	$scope.modalDisplayValue = {display: 'none'};
+	$scope.selectedItemName = "test";
+	$scope.selectedItemInfo = "test";
 	
 	function storageExists()
 	{
@@ -61,10 +65,16 @@ app.controller("checklistcontroller", function($scope){
 	
 	$scope.items = items;
 	
-	$scope.changeInfo = function(info, name)
+	$scope.displayModal = function(info, name)
 	{
-		$("#modalHeader").text(name);
-		$("#info").val(info);
+		$scope.selectedItemName = name;
+		$scope.selectedItemInfo = info;
+		$scope.modalDisplayValue = {display: 'block'};
+		
+	}
+	$scope.hideModal = function()
+	{
+		$scope.modalDisplayValue = {display: 'none'};
 	}
 	
 });

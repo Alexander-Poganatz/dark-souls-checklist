@@ -11,4 +11,4 @@ The ItemAndDescriptionToJavaScript is just a program to convert a list in a text
 
 The lists folder contains text files of the data for the app.
 
-I didn't contain some files like jquery, bootstrap, and angular.
+I didn't contain w3.css and angular in this repository.
